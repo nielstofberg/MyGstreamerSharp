@@ -28,6 +28,7 @@ namespace Video
             InputType = Cap.Name;
 
             Format = cap.GetString("format");
+            if (Format == null) Format = "";
             var w = cap.GetValue("width");
             if (w.Val is Gst.IntRange)
             {

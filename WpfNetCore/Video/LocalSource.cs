@@ -157,10 +157,13 @@ namespace Video
                 }
             }
 
-            if (CapInfo.Format?.Length > 0) // && CapInfo.Width > 0 && CapInfo.Height > 0 && CapInfo.FPS > 0)
+            if (CapInfo.InputType?.Length > 0) // && CapInfo.Width > 0 && CapInfo.Height > 0 && CapInfo.FPS > 0)
             {
                 Gst.Caps myCaps = new Gst.Caps(CapInfo.InputType);
-                myCaps[0].SetValue("format", new GLib.Value(CapInfo.Format));
+                if (CapInfo.Format.Length > 0)
+                {
+                    myCaps[0].SetValue("format", new GLib.Value(CapInfo.Format));
+                }
                 if (CapInfo.Width > 0)
                 {
                     myCaps[0].SetValue("width", new GLib.Value(CapInfo.Width));
