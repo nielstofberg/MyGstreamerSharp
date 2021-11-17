@@ -28,6 +28,7 @@ namespace WpfNetCore.Controls
         private WriteableBitmap _image1 = new WriteableBitmap(1920, 1080, 96, 96, PixelFormats.Bgra32, BitmapPalettes.WebPalette);
         private string _lblPlay = "Play";
         private bool _deInterlace = true;
+        private bool _recording = true;
 
         private LocalSource _ls;
         private Gst.Device _device;
@@ -62,6 +63,15 @@ namespace WpfNetCore.Controls
             {
                 _deInterlace = value;
                 OnPropertyChange("DeInterlace");
+            }
+        }
+        public bool Recording
+        {
+            get { return _recording; }
+            set
+            {
+                _recording = value;
+                OnPropertyChange("Recording");
             }
         }
 
@@ -129,6 +139,9 @@ namespace WpfNetCore.Controls
                 //_ls.DeviceName = SelectedDevice.DisplayName;
                 _ls.DeviceIndex = Devices.IndexOf(SelectedDevice);
                 _ls.CapInfo = SelectedFormat;
+                _ls.RecordingOptions = RecordOptions.Multifile | RecordOptions.H264;
+                _ls.FileLength = 5;
+                _ls.DateFormat = "yyyy-MM-dd_HH-mm-ss";
                 await _ls.StartVideoAsync();
                 LabelPlay = "Pause";
             }
@@ -178,5 +191,21 @@ namespace WpfNetCore.Controls
             return ret.ToArray();//.Where(c => c.Format.Contains("jpeg")).ToArray();
         }
 
+        private async void btnRecord_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = (Button)sender;
+            if (_ls.Recording)
+            {
+                await _ls.StopRecordingAsync();
+                btn.Content = "Record";
+            }
+            else
+            {
+                if (await _ls.StartRecordingAsync())
+                {
+                    btn.Content = "Stop Rec";
+                }
+            }
+        }
     }
 }

@@ -11,4 +11,8 @@
     <PackageReference Include="gstreamer-sharp-netcore" Version="0.0.8" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GstSharpCore\GstSharpCore.csproj" />
+  </ItemGroup>
+
 </Project>

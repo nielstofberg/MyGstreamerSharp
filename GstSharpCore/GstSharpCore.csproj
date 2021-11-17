@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <Version>0.1.0</Version>
+    <RootNamespace>Video</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="gstreamer-sharp-netcore" Version="0.0.8" />
+  </ItemGroup>
+
+</Project>

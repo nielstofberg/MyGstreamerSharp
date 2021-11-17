@@ -8,18 +8,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="1300">
     <Grid ShowGridLines="True">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-        </Grid.RowDefinitions>
         <Controls:VideoPlayer Grid.Column="0" Grid.Row="0" Margin="2,2,2,2" />
-        <Controls:VideoPlayer Grid.Column="1" Grid.Row="0" Margin="2,2,2,2" />
-        <Controls:VideoPlayer Grid.Column="0" Grid.Row="1" Margin="2,2,2,2" />
-        <Controls:VideoPlayer Grid.Column="1" Grid.Row="1" Margin="2,2,2,2" />
     </Grid>
 </Window>
